@@ -13,6 +13,10 @@ main().catch((err) => console.log(err));
 app.use(express.json());
 const productrouter = require("./Routes/product");
 
+
+app.get('/',(req,res)=>res.json('Server is running successfully')
+)
+
 app.use("/api/v1/product", productrouter.router);
 
 
