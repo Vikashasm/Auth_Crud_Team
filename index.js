@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv=require("dotenv").config();
 
 async function main() {
+  console.log(process.env.DB_PATH);
   await mongoose.connect(process.env.DB_PATH);
   console.log("database is connected");
 }
