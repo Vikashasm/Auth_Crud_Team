@@ -14,8 +14,8 @@ exports.product =async (req, res) => {
 exports.createProduct =async (req, res) => {
   try {
      const productdata = new product(req.body);
-     await productdata.save();
-    res.status(201).json(productdata)
+     const data=await productdata.save();
+    res.status(201).json(data)
   } catch (error) {
     console.log(error);
     res.status(400).json(error);

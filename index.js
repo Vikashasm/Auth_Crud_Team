@@ -1,23 +1,25 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-const mongoose = require("mongoose");
-const dotenv=require("dotenv").config();
+// const bodyParser = require("body-parser");
 
-async function main() {
-  await mongoose.connect(process.env.DB_PATH);
-  console.log("database is connected");
-}
-main().catch((err) => console.log(err));
+require('./config/db')
+require("dotenv").config();
 
+
+// app.use(bodyParser)
 app.use(express.json());
+app.get('/',(req,res)=>res.json('Server is running successfully'))
+
+
+//routes imports
 const productrouter = require("./Routes/product");
+const Userrouter = require("./Routes/auth");
 
 
-app.get('/',(req,res)=>res.json('Server is running successfully')
-)
-
+//All Routes
 app.use("/api/v1/product", productrouter.router);
+app.use("/api/v1/auth", Userrouter.router);
 
 
 const PORT=process.env.PORT
